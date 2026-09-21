@@ -96,12 +96,12 @@ set_font(r, "楷体", 14, False)
 for _ in range(2):
     doc.add_paragraph()
 info = [
-    ("学    生：【请填写姓名】"),
-    ("学    号：【请填写学号】"),
-    ("专    业：【请填写专业】"),
-    ("指导教师：【请填写导师】"),
+    ("学    生：王汐冰"),
+    ("学    号：202364116"),
+    ("专    业：大数据管理与应用 3班"),
+    ("指导教师：孙智广"),
     ("课程名称：管理研究中的NLP测度构建方法"),
-    ("提交日期：2026 年 9 月"),
+    ("提交日期：2026 年 10 月"),
 ]
 for it in info:
     p = doc.add_paragraph(); p.alignment = WD_ALIGN_PARAGRAPH.CENTER
