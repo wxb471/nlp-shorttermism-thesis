@@ -1,0 +1,8 @@
+===== 信度与效度检验摘要 =====
+样本量 N = 600（120 家公司 × 5 年）
+[信度] 折半相关 ShortTerm_A~ShortTerm_B = 0.261
+[聚合效度] ShortTerm~true_intensity(已知) = 0.822
+[区分效度] ShortTerm~LongTerm = -0.589（应负向/偏低）
+[预测效度] β1(ShortTerm, M1) = -0.121，p = 0.0000
+[预测效度] β1(ShortTerm, M2) = -0.120，p = 0.0000
+M1 R2 = 0.821，M2 R2 = 0.854

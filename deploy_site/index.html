@@ -1,0 +1,55 @@
+<!doctype html><html lang="zh"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>管理者短视主义对研发投入的影响 · NLP测度构建预演</title>
+<style>
+*{box-sizing:border-box}
+body{font-family:-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;max-width:920px;margin:0 auto;padding:32px 20px;color:#1f2933;line-height:1.7}
+h1{font-size:26px;border-bottom:3px solid #2563eb;padding-bottom:10px}
+h2{font-size:20px;margin-top:34px;color:#1e3a8a}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:13px}
+th,td{border:1px solid #cbd5e1;padding:6px 9px;text-align:center}
+th{background:#eff6ff}
+a.btn{display:inline-block;background:#2563eb;color:#fff;padding:9px 16px;border-radius:8px;text-decoration:none;margin:6px 8px 6px 0;font-size:14px}
+.note{background:#fffbeb;border:1px solid #fde68a;padding:12px 16px;border-radius:8px;font-size:13px}
+.card{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:16px 20px;margin:14px 0}
+code{background:#eef2ff;padding:2px 6px;border-radius:4px}
+</style></head><body>
+<h1>管理者短视主义对企业研发投入的影响<br><span style="font-size:16px;color:#475569">——基于上市公司年报文本的NLP测度构建（毕业论文预演稿）</span></h1>
+<p class="note">本课程预演稿完整复现“语料获取→预处理→特征提取→指标构建→信度与效度检验”五步法，
+构建企业—年份管理者短视测度 <code>ShortTerm</code>，并检验其对研发投入的抑制作用。
+<b>实证采用结构受控的合成演示数据</b>，用于验证方法可行性；真实研究请按 data_sources.md 获取巨潮+CSMAR 数据复现。</p>
+
+<div class="card">
+<h2 style="margin-top:0">📦 交付物下载</h2>
+<a class="btn" href="paper/预演论文.docx">论文全文（Word）</a>
+<a class="btn" href="output/panel_measure.csv">测度结果表（CSV）</a>
+<a class="btn" href="output/panel_measure.xlsx">测度结果表（Excel）</a>
+<a class="btn" href="code/run_all.py">五步流水线代码</a>
+<a class="btn" href="data_sources.md">数据来源说明</a>
+<a class="btn" href="README.md">项目说明</a>
+</div>
+
+<h2>一、研究设计</h2>
+<p>语料：上市公司年报 MD&A 文本（演示：120 家公司 × 2019–2023 年 = 600 个公司—年度观测）。
+测度：<code>ShortTerm = 短视词典命中数 / 总词数 × 1000</code>（每千词命中数）。
+短视词典 43 词，长期视域词典 20 词（区分效度）。</p>
+
+<h2>二、描述性统计</h2>
+<table><tr><th></th><th>ShortTerm</th><th>LongTerm</th><th>RD_intensity</th><th>Size</th><th>ROA</th><th>Lev</th><th>Age</th><th>Growth</th><th>Cash</th></tr><tr><th>count</th><td>600.000</td><td>600.000</td><td>600.000</td><td>600.000</td><td>600.000</td><td>600.000</td><td>600.000</td><td>600.000</td><td>600.000</td></tr><tr><th>mean</th><td>34.263</td><td>41.566</td><td>12.419</td><td>21.963</td><td>0.039</td><td>0.451</td><td>12.880</td><td>0.120</td><td>0.049</td></tr><tr><th>std</th><td>18.366</td><td>15.479</td><td>2.763</td><td>1.228</td><td>0.039</td><td>0.184</td><td>7.154</td><td>0.195</td><td>0.051</td></tr><tr><th>min</th><td>0.000</td><td>0.000</td><td>3.309</td><td>18.836</td><td>-0.087</td><td>0.050</td><td>1.000</td><td>-0.570</td><td>-0.082</td></tr><tr><th>25%</th><td>21.505</td><td>31.915</td><td>10.509</td><td>21.108</td><td>0.015</td><td>0.324</td><td>7.000</td><td>-0.016</td><td>0.013</td></tr><tr><th>50%</th><td>32.521</td><td>39.660</td><td>12.627</td><td>21.986</td><td>0.040</td><td>0.446</td><td>13.000</td><td>0.124</td><td>0.049</td></tr><tr><th>75%</th><td>48.387</td><td>52.980</td><td>14.436</td><td>22.837</td><td>0.064</td><td>0.574</td><td>19.000</td><td>0.253</td><td>0.085</td></tr><tr><th>max</th><td>92.391</td><td>81.081</td><td>18.843</td><td>25.540</td><td>0.154</td><td>0.930</td><td>25.000</td><td>0.795</td><td>0.194</td></tr></table>
+
+<h2>三、信度与效度</h2>
+<table><tr><th></th><th>ShortTerm</th><th>ShortTerm_A</th><th>ShortTerm_B</th><th>LongTerm</th><th>true_intensity</th></tr><tr><th>ShortTerm</th><td>1.000</td><td>0.816</td><td>0.771</td><td>-0.589</td><td>0.823</td></tr><tr><th>ShortTerm_A</th><td>0.816</td><td>1.000</td><td>0.261</td><td>-0.479</td><td>0.659</td></tr><tr><th>ShortTerm_B</th><td>0.771</td><td>0.261</td><td>1.000</td><td>-0.457</td><td>0.648</td></tr><tr><th>LongTerm</th><td>-0.589</td><td>-0.479</td><td>-0.457</td><td>1.000</td><td>-0.697</td></tr><tr><th>true_intensity</th><td>0.823</td><td>0.659</td><td>0.648</td><td>-0.697</td><td>1.000</td></tr></table>
+<p>折半信度 0.261（Spearman-Brown 校正≈0.41）；聚合效度 r(ShortTerm, 潜在短视强度)=0.822；
+区分效度 r(ShortTerm, LongTerm)=−0.589。</p>
+
+<h2>四、主回归结果（ShortTerm 对研发投入强度）</h2>
+<table><tr><th>变量</th><th>模型</th><th>系数</th><th>标准误</th><th>t</th><th>p</th></tr><tr><td>ShortTerm</td><td>M1(无FE)</td><td>-0.121</td><td>0.003</td><td>-45.72</td><td>0.000</td></tr><tr><td>Size</td><td>M1(无FE)</td><td>0.670</td><td>0.039</td><td>17.07</td><td>0.000</td></tr><tr><td>ROA</td><td>M1(无FE)</td><td>8.579</td><td>1.247</td><td>6.88</td><td>0.000</td></tr><tr><td>Lev</td><td>M1(无FE)</td><td>-1.569</td><td>0.264</td><td>-5.95</td><td>0.000</td></tr><tr><td>Age</td><td>M1(无FE)</td><td>-0.049</td><td>0.007</td><td>-7.26</td><td>0.000</td></tr><tr><td>Growth</td><td>M1(无FE)</td><td>1.475</td><td>0.249</td><td>5.93</td><td>0.000</td></tr><tr><td>Cash</td><td>M1(无FE)</td><td>0.214</td><td>0.948</td><td>0.23</td><td>0.821</td></tr><tr><td>ShortTerm</td><td>M2(公司+年度FE)</td><td>-0.120</td><td>0.005</td><td>-25.65</td><td>0.000</td></tr><tr><td>Size</td><td>M2(公司+年度FE)</td><td>0.655</td><td>0.044</td><td>14.84</td><td>0.000</td></tr><tr><td>ROA</td><td>M2(公司+年度FE)</td><td>8.344</td><td>1.398</td><td>5.97</td><td>0.000</td></tr><tr><td>Lev</td><td>M2(公司+年度FE)</td><td>-1.528</td><td>0.299</td><td>-5.11</td><td>0.000</td></tr><tr><td>Age</td><td>M2(公司+年度FE)</td><td>-0.048</td><td>0.007</td><td>-6.43</td><td>0.000</td></tr><tr><td>Growth</td><td>M2(公司+年度FE)</td><td>1.568</td><td>0.281</td><td>5.58</td><td>0.000</td></tr><tr><td>Cash</td><td>M2(公司+年度FE)</td><td>-0.080</td><td>1.043</td><td>-0.08</td><td>0.939</td></tr></table>
+<p>含公司 + 年度固定效应的 M2 中，<code>ShortTerm</code> 系数 −0.120（t=−25.65，p&lt;0.01），
+管理者短视主义显著抑制研发投入，研究假设成立。</p>
+
+<h2>五、复现方式</h2>
+<p><code>pip install pandas numpy jieba statsmodels python-docx openpyxl</code><br>
+<code>python code/run_all.py</code> → 产出写入 output/；<code>python paper/generate_docx.py</code> → 生成论文。</p>
+
+<p style="color:#64748b;font-size:12px;margin-top:30px">© 课程预演稿 · 自然语言处理文本测度构建方法 · 可复现研究示范</p>
+</body></html>

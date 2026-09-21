@@ -1,0 +1,6 @@
+﻿,ShortTerm,ShortTerm_A,ShortTerm_B,LongTerm,true_intensity
+ShortTerm,1.0,0.8156,0.7715,-0.5893,0.8225
+ShortTerm_A,0.8156,1.0,0.2612,-0.4788,0.659
+ShortTerm_B,0.7715,0.2612,1.0,-0.4566,0.6477
+LongTerm,-0.5893,-0.4788,-0.4566,1.0,-0.6973
+true_intensity,0.8225,0.659,0.6477,-0.6973,1.0
